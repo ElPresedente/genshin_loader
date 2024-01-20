@@ -1,9 +1,8 @@
 #include <iostream>
-#include <map>
 #include <variant>
-#include <vector>
-#include <windowsx.h>
-#include "include/tao/config.hpp"
+#include <filesystem>
+#include <tao/config.hpp>
+#include "tiny-process-library/process.hpp"
 
 #ifdef NDEBUG
 #define CFG "config.cfg"
@@ -11,26 +10,17 @@
 #define CFG "../config.cfg"
 #endif
 
+namespace fs = std::filesystem;
+
 int main() try{
     tao::config::value config = tao::config::from_file(CFG);
     auto config_map = std::get<11>(config.variant()); //ГРЕШНО, НО ПОКА ВПАДЛУ
     for(auto [key, value] : config_map){
         auto&& cmd_str = value.get_string();
+        fs::path current_file = cmd_str;
+        auto parent_folder = current_file.parent_path();
         std::cout << "Item " << key << " starting..." << std::endl;
-        std::vector<char> cmd;
-        cmd.reserve(1000);
-        std::copy(cmd_str.begin(), cmd_str.end(), cmd.begin());
-        CreateProcessA(
-                key.c_str(),
-                cmd.data(),
-                NULL,
-                NULL,
-                FALSE,
-                NULL,
-                NULL,
-                NULL,
-                NULL,
-                NULL);
+        TinyProcessLib::Process current{cmd_str, parent_folder.string()};
     }
     return 0;
 }
