@@ -1,0 +1,29 @@
+[
+    {
+        "name": "vanila client",
+        "commands": [
+            {
+                "name" : "genshin",
+                "command": "D:\\Games\\3dmigoto\\3DMigoto Loader.exe"
+            }
+        ]
+    },
+    {
+        "name": "genshin modded",
+        "commands": [
+            {
+                "name" : "3dmigoto",
+                "command": "D:\\Games\\3dmigoto\\3DMigoto Loader.exe"
+            }
+        ]
+    },
+    {
+        "name": "genshin modded with skin selector",
+        "commands": [
+            {
+                "name" : "SkinSelectImpact",
+                "command": "D:\\Games\\SkinSelectImpact\\SkinSelectImpact.exe"
+            }
+        ]
+    }
+]

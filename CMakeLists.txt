@@ -19,11 +19,19 @@ include_directories(${GTKMM_INCLUDE_DIRS})
 
 link_directories(${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows/lib ${CMAKE_CURRENT_BINARY_DIR}/vcpkg_installed/x64-windows/debug/lib)
 
+
 add_executable(genshin_loader main.cc icon.rc
         main_window.cpp
         main_window.hpp
         config.cpp
         config.hpp)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_compile_definitions(genshin_loader PUBLIC "WINDOWS")
+    target_link_options(genshin_loader PUBLIC /subsystem:windows)
+endif()
+
+
 target_link_libraries(genshin_loader PRIVATE
         tiny-process-library::tiny-process-library
         JsonCpp::JsonCpp

@@ -2,7 +2,6 @@
 // Created by vova1 on 27.01.2024.
 //
 
-#include <iostream>
 #include "config.hpp"
 
 std::vector<config> config::read_file(const char *path) {
@@ -11,16 +10,13 @@ std::vector<config> config::read_file(const char *path) {
     fs::path config_file{path};
 
     if(!fs::exists(config_file)){
-        throw std::runtime_error{"cant find config file"};
+        std::stringstream s;
+        s << "Cant find config file at " << path;
+        throw std::runtime_error{s.str()};
     }
     std::ifstream fin{path};
     Json::Value root;
-    try{
-        fin >> root;
-    }
-    catch(std::exception e){
-        std::cerr << e.what();
-    }
+    fin >> root;
 
     for(auto&& current_json : root){
         config current;

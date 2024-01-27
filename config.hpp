@@ -8,6 +8,7 @@
 #include <fstream>
 #include <vector>
 #include <filesystem>
+#include <sstream>
 
 #include <json/json.h>
 

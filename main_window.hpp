@@ -14,7 +14,7 @@
 #include "config.hpp"
 
 #ifdef NDEBUG
-#define CFG "configs.cfg"
+#define CFG "config.json"
 #else
 #define CFG "../config.json"
 #endif
