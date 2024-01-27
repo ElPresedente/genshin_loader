@@ -33,6 +33,7 @@ main_window::main_window() : main_box(Gtk::Orientation::VERTICAL, 0) {
 
 void main_window::on_button_clicked(int data) {
     execute_config(configs.at(data));
+    std::exit(0);
 }
 
 void main_window::execute_config(config &config) {
