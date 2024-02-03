@@ -11,7 +11,7 @@ main_window::main_window() : main_box(Gtk::Orientation::VERTICAL, 0) {
 
     main_box.set_vexpand();
 
-    for(int i = 0 ; i < configs.size(); i++){
+    for(int i = 0 ; i < configs.size(); ){
         Gtk::Box current_box{Gtk::Orientation::HORIZONTAL};
         current_box.set_hexpand();
         for(int j = 0; j < 3 && i < configs.size(); j++, i++){
